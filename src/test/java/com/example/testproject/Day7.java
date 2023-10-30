@@ -14,9 +14,16 @@ public class Day7 {
 
     @Test
     void fillAutomationPracticeForm(){
-        System.setProperty("selenide.browser", "firefox");
-        Configuration.browserSize = "3220x1500";
+        Configuration.browser = "Firefox";
+        Configuration.browserSize = "1920x1080";
         open("https://demoqa.com/automation-practice-form");
+
+
+        executeJavaScript("$('adplus-anchor').remove()");
+        executeJavaScript("$('footer').remove()");
+
+
+
         $("#firstName").setValue("firstName");
         $("#lastName").setValue("lastName");
         $("#userEmail").setValue("name@example.com");
