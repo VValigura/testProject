@@ -8,18 +8,21 @@ import org.openqa.selenium.Keys;
 
 import java.io.File;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
 public class Day7 {
 
+
+
     @Test
     void fillAutomationPracticeForm(){
-        Configuration.browser = "Firefox";
+//        Configuration.browser = "Firefox";
         Configuration.browserSize = "1920x1080";
         open("https://demoqa.com/automation-practice-form");
 
 
-        executeJavaScript("$('adplus-anchor').remove()");
+        executeJavaScript("$('#adplus-anchor').remove()");
         executeJavaScript("$('footer').remove()");
 
 
@@ -35,10 +38,12 @@ public class Day7 {
         $("#dateOfBirthInput").sendKeys(Keys.ENTER);
         $("#hobbies-checkbox-1").parent().click();
         $("#uploadPicture").sendKeys("C:\\Users\\Valigura\\2.png");
+
+
+
         $("#currentAddress").setValue("currentAddress");
         $("#submit").click();
-        sleep(5000);
-        $("table.table").shouldHave(Condition.text("firstName"));
+        $("table.table").shouldHave(text("firstName"));
     }
 
 }
