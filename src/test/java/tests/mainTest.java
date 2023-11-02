@@ -1,30 +1,32 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.*;
+import java.util.Locale;
 
-public class Day7 {
+public class mainTest {
+    Faker faker;
 
     @BeforeEach
     void beforeEach(){
         Configuration.browserSize = "1920x1080";
+        faker = new Faker(new Locale("en"));
 
     }
 
     @Test
     void fillAutomationPracticeForm(){
 
-        String firstName = "firstName1";
-        String lastName = "lastName1";
-        String email = "name1@ex.com";
-        String mobile = "0123456789";
-        String picturePaths = "src/test/java/resources/1.jpg";
-        String setCurrentAddress = "setCurrentAddress";
+        String firstName = faker.name().firstName();
+        String lastName = faker.name().lastName();
+        String email = faker.internet().emailAddress();
+        String mobile = faker.phoneNumber().subscriberNumber(10);
+        String picturePaths = "src/test/resources/1.jpg";
+        String setCurrentAddress = faker.address().fullAddress();
         String state = "Haryana";
         String city = "Karnal";
         String subjects = "English";
