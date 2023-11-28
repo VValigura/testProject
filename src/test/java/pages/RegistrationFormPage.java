@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.selector.ByText;
+import io.qameta.allure.Step;
 import pages.components.CalendarComponent;
 import pages.components.RegistrationResultsModal;
 
@@ -12,9 +13,6 @@ import static com.codeborne.selenide.Selenide.*;
 public class RegistrationFormPage {
     private CalendarComponent calendar = new CalendarComponent();
     private RegistrationResultsModal registrationResultsModal = new RegistrationResultsModal();
-
-
-
 
     public RegistrationFormPage openPage(){
         open("https://demoqa.com/automation-practice-form");

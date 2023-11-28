@@ -1,25 +1,32 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import com.github.javafaker.Faker;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
 
 import java.util.Locale;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class mainTest {
     Faker faker;
 
     @BeforeEach
     void beforeEach(){
+        SelenideLogger.addListener("allure", new AllureSelenide());
         Configuration.browserSize = "1920x1080";
         faker = new Faker(new Locale("en"));
 
     }
 
     @Test
-    void fillAutomationPracticeForm(){
+     void fillAutomationPracticeForm(){
 
         String firstName = faker.name().firstName();
         String lastName = faker.name().lastName();
@@ -52,5 +59,12 @@ public class mainTest {
                 .verifyResult("Mobile",mobile )
                 .verifyResult("Date of Birth", "05 June,1991");
     }
+
+
+    @Test
+    void testyNegativ(){
+        assertTrue(false);
+    }
+
 
 }

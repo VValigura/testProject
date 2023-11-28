@@ -1,9 +1,24 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '2.10.0'
 }
 
 group 'com.example'
 version '1.0-SNAPSHOT'
+
+allure {
+    report {
+        version.set("2.19.0")
+    }
+    adapter { // отвечает за появление папочки build/allure-results
+        aspectjWeaver.set(true) //обработка аннотации @Step
+        frameworks {
+            junit5 { //название фреймворка
+                adapterVersion.set("2.19.0") //версия интеграции фреймворка и Allure
+            }
+        }
+    }
+}
 
 repositories {
     mavenCentral()
@@ -11,22 +26,28 @@ repositories {
 
 
 dependencies {
-    testImplementation('com.codeborne:selenide:7.0.1')
-    testImplementation('org.junit.jupiter:junit-jupiter:5.10.0')
-    testImplementation('org.assertj:assertj-core:3.23.1')
-    testImplementation('org.slf4j:slf4j-simple:2.0.6')
-
-
-
-    testImplementation('com.codeborne:xls-test:1.4.3')
-    testImplementation('com.codeborne:pdf-test:1.5.0')
-    testImplementation('com.opencsv:opencsv:5.8')
-    testImplementation('com.fasterxml.jackson.core:jackson-databind:2.15.3')
-    testImplementation('com.github.javafaker:javafaker:1.0.2')
-
-
+    testImplementation('com.codeborne:selenide:7.0.1',
+            'io.qameta.allure:allure-selenide:2.19.0',
+            'org.junit.jupiter:junit-jupiter:5.10.0',
+            'org.assertj:assertj-core:3.23.1',
+            'org.slf4j:slf4j-simple:2.0.6',
+            'com.codeborne:xls-test:1.4.3',
+            'com.codeborne:pdf-test:1.5.0',
+            'com.opencsv:opencsv:5.8',
+            'com.fasterxml.jackson.core:jackson-databind:2.15.3',
+            'com.github.javafaker:javafaker:1.0.2'
+    )
 }
 
 test {
     useJUnitPlatform()
+    systemProperties(System.getProperties())
 }
+
+task simple_test(type: Test){
+    useJUnitPlatform {
+        includeTags("Simple")
+    }
+
+}
+
