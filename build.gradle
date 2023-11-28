@@ -28,7 +28,7 @@ repositories {
 dependencies {
     testImplementation(
 
-            'com.codeborne:selenide:6.10.3',
+            'com.codeborne:selenide:7.0.2',
             'io.qameta.allure:allure-selenide:2.19.0',
             'org.junit.jupiter:junit-jupiter:5.10.0',
             'org.assertj:assertj-core:3.23.1',
@@ -50,6 +50,11 @@ task simple_test(type: Test){
     useJUnitPlatform {
         includeTags("Simple")
     }
+}
 
+task selenoin_test(type: Test){
+    useJUnitPlatform {
+        includeTags("Selenoin")
+    }
 }
 
