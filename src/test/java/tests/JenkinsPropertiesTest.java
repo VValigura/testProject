@@ -55,6 +55,13 @@ public class JenkinsPropertiesTest {
         String city = "Karnal";
         String subjects = "English";
 
+        System.out.println("----------------------PARAMETERS START---------------------");
+        System.out.println("browser_extension : " + System.getProperty("browser_extension"));
+        System.out.println("browser_name : "+System.getProperty("browser_name"));
+        System.out.println("browser_version : "+System.getProperty("browser_version"));
+        System.out.println("selenoid_url : "+System.getProperty("selenoid_url"));
+        System.out.println("----------------------PARAMETERS END---------------------");
+
         new RegistrationFormPage().openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
@@ -75,5 +82,6 @@ public class JenkinsPropertiesTest {
                 .verifyResult("Gender", "Male")
                 .verifyResult("Mobile",mobile )
                 .verifyResult("Date of Birth", "05 June,1991");
+
     }
 }
