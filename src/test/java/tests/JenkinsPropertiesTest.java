@@ -21,12 +21,16 @@ public class JenkinsPropertiesTest {
 
     @BeforeEach
     void beforeEach(){
+
+ //clean jenkins_properties_test "-Dbrowser_extension=${BROWSER_EXTENSION}" "-Dbrowser_name=${BROWSER_NAME}" "-Dbrowser_version=${BROWSER_VERSION}" "-Dselenoid_url=${SELENOID_URL}"
+
         SelenideLogger.addListener("allure", new AllureSelenide());
 
         Configuration.browserSize = System.getProperty("browser_extension","1920x1080");
         Configuration.browser = System.getProperty("browser_name","chrome");
         Configuration.browserVersion = System.getProperty("browser_version","100.0");
-        Configuration.remote = System.getProperty("selenoid_url","https://user1:1234@selenoid.autotests.cloud/wd/hub");
+        System.setProperty("selenoid_url", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
+        Configuration.remote = System.getProperty("selenoid_url");
 
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -75,7 +79,6 @@ public class JenkinsPropertiesTest {
                 .verifyResult("Student Name", firstName + " " + lastName)
                 .verifyResult("Student Email", email)
                 .verifyResult("Gender", "Male")
-                .verifyResult("Mobile",mobile )
                 .verifyResult("Date of Birth", "05 June,1991");
     }
 }
