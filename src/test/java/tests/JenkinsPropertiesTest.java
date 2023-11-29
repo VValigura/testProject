@@ -23,10 +23,10 @@ public class JenkinsPropertiesTest {
     void beforeEach(){
         SelenideLogger.addListener("allure", new AllureSelenide());
 
-        Configuration.browserSize = System.getProperty("browser_extension","1920x1080");
-        Configuration.browser = System.getProperty("browser_name","chrome");
-        Configuration.browserVersion = System.getProperty("browser_version","100.0");
-        Configuration.remote = System.getProperty("selenoid_url","https://user1:1234@selenoid.autotests.cloud/wd/hub");
+        Configuration.browserSize = System.setProperty("browser_extension","1920x1080");
+        Configuration.browser = System.setProperty("browser_name","chrome");
+        Configuration.browserVersion = System.setProperty("browser_version","100.0");
+        Configuration.remote = System.setProperty("selenoid_url","https://user1:1234@selenoid.autotests.cloud/wd/hub");
 
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
