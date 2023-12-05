@@ -28,7 +28,6 @@ repositories {
 dependencies {
     testImplementation(
             'com.codeborne:selenide:6.10.3',
-            //'com.codeborne:selenide:7.0.2',
             'io.qameta.allure:allure-selenide:2.19.0',
             'org.junit.jupiter:junit-jupiter:5.10.0',
             'org.assertj:assertj-core:3.23.1',
@@ -37,7 +36,8 @@ dependencies {
             'com.codeborne:pdf-test:1.5.0',
             'com.opencsv:opencsv:5.8',
             'com.fasterxml.jackson.core:jackson-databind:2.15.3',
-            'com.github.javafaker:javafaker:1.0.2'
+            'com.github.javafaker:javafaker:1.0.2',
+            'org.aeonbits.owner:owner:1.0.12'
     )
 }
 
@@ -50,17 +50,27 @@ task simple_test(type: Test){
     useJUnitPlatform {
         includeTags("Simple")
     }
+    systemProperties(System.getProperties())
 }
 
 task selenoin_test(type: Test){
     useJUnitPlatform {
         includeTags("Selenoin")
     }
+    systemProperties(System.getProperties())
 }
 
 task jenkins_properties_test(type: Test){
     useJUnitPlatform {
         includeTags("JenkinsPropertiesTest")
     }
+    systemProperties(System.getProperties())
+}
+
+task jenkins_properties_owner_test(type: Test){
+    useJUnitPlatform {
+        includeTags("JenkinsPropertyOwnerTest")
+    }
+    systemProperties(System.getProperties())
 }
 

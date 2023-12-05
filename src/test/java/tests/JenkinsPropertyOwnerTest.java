@@ -3,47 +3,32 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.github.javafaker.Faker;
+import config.ConfigWebDriver;
+import config.WebDriverConfig;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import pages.RegistrationFormPage;
 
 import java.util.Locale;
-import java.util.Map;
 
-
-@Tag("JenkinsPropertiesTest")
-public class JenkinsPropertiesTest {
-
+@Tag("JenkinsPropertyOwnerTest")
+public class JenkinsPropertyOwnerTest {
     Faker faker;
 
     @BeforeEach
-    void beforeEach(){
-
- //clean jenkins_properties_test "-Dbrowser_extension=${BROWSER_EXTENSION}" "-Dbrowser_name=${BROWSER_NAME}" "-Dbrowser_version=${BROWSER_VERSION}" "-Dselenoid_url=${SELENOID_URL}"
-//java "-DconfigFile=notifications/config.json" -jar notifications/allure-notifications-4.2.1.jar
-
-        SelenideLogger.addListener("allure", new AllureSelenide());
-
-        Configuration.browserSize = System.getProperty("browser_extension","1920x1080");
-        Configuration.browser = System.getProperty("browser_name","chrome");
-        Configuration.browserVersion = System.getProperty("browser_version","100.0");
-        System.setProperty("selenoid_url", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
-        Configuration.remote = System.getProperty("selenoid_url");
-
-
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                "enableVNC", true,
-                "enableVideo", true
-        ));
-
-        Configuration.browserCapabilities = capabilities;
-
+    void beforeEach() {
+        //clean jenkins_properties_test "-Dbrowser_extension=${BROWSER_EXTENSION}" "-Dbrowser_name=${BROWSER_NAME}" "-Dbrowser_version=${BROWSER_VERSION}" "-Dselenoid_url=${SELENOID_URL}"
 
         faker = new Faker(new Locale("en"));
+        SelenideLogger.addListener("allure", new AllureSelenide());
+
+
+       new ConfigWebDriver().setBrowserConfig();
+        new ConfigWebDriver().addRemoteSelenide();
+
 
     }
 
@@ -83,3 +68,4 @@ public class JenkinsPropertiesTest {
                 .verifyResult("Date of Birth", "05 June,1991");
     }
 }
+
