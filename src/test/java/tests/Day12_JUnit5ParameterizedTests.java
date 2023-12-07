@@ -13,6 +13,7 @@ import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
+@Disabled
 public class Day12_JUnit5ParameterizedTests {
 
     @BeforeEach

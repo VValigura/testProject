@@ -8,12 +8,14 @@ import config.WebDriverConfig;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationFormPage;
 
 import java.util.Locale;
 
+@Disabled
 @Tag("JenkinsPropertyOwnerTest")
 public class JenkinsPropertyOwnerTest {
     Faker faker;

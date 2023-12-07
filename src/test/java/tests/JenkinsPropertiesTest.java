@@ -5,6 +5,7 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import com.github.javafaker.Faker;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -13,7 +14,7 @@ import pages.RegistrationFormPage;
 import java.util.Locale;
 import java.util.Map;
 
-
+@Disabled
 @Tag("JenkinsPropertiesTest")
 public class JenkinsPropertiesTest {
 

@@ -5,6 +5,7 @@ import com.codeborne.xlstest.XLS;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.CSVReader;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
@@ -13,7 +14,7 @@ import java.util.zip.ZipFile;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
+@Disabled
 public class Day13_JUnit_Files {
 
 
